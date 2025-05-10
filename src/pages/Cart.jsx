@@ -7,7 +7,7 @@ import {
   Button,
   Divider
 } from '@chakra-ui/react';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../context/CartContext';
 
 const Cart = () => {
   const { cart, removeFromCart } = useCart();

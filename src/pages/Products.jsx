@@ -8,7 +8,7 @@ import {
   Button,
   Stack
 } from '@chakra-ui/react';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../context/CartContext';
 
 const products = [
   { id: 1, name: 'T-Shirt', price: 19.99, image: 'https://via.placeholder.com/150' },

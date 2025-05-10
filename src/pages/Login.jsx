@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Heading, Input, Button, FormControl, FormLabel, useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../contexts/UserContext';
+import { useUser } from '../context/UserContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');

@@ -10,7 +10,7 @@ import {
   Link as ChakraLink
 } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../contexts/UserContext';
+import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
   const { toggleColorMode } = useColorMode();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
-import { useUser } from '../contexts/UserContext';
+import { useUser } from '../context/UserContext';
 
 const orders = [
   { id: 1, product: 'T-Shirt', date: '2025-05-01', status: 'Shipped' },
