@@ -1,0 +1,26 @@
+
+[
+    {
+      "id": 1,
+      "name": "Wireless Headphone",
+      "price": 299000,
+      "category": "Elektronik",
+      "image": "https://via.placeholder.com/300x200?text=Headphone"
+    },
+    {
+      "id": 2,
+      "name": "Smartwatch Black",
+      "price": 450000,
+      "category": "Gadget",
+      "image": "https://via.placeholder.com/300x200?text=Smartwatch"
+    },
+    {
+      "id": 3,
+      "name": "Sepatu Sneakers",
+      "price": 380000,
+      "category": "Fashion",
+      "image": "https://via.placeholder.com/300x200?text=Sneakers"
+    }
+  ]
+  
+  
