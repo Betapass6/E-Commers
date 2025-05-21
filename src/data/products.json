@@ -1,26 +1,89 @@
-
-[
+{
+  "products": [
     {
-      "id": 1,
-      "name": "Wireless Headphone",
-      "price": 299000,
-      "category": "Elektronik",
-      "image": "https://via.placeholder.com/300x200?text=Headphone"
+      "id": "1",
+      "title": "Wireless Headphones",
+      "name": "Premium Bluetooth Headphones",
+      "description": "High-quality wireless headphones with noise cancellation and 30-hour battery life.",
+      "price": 199.99,
+      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+      "stockQuantity": 15,
+      "features": [
+        "Active Noise Cancellation",
+        "30-hour Battery Life",
+        "Bluetooth 5.0",
+        "Touch Controls",
+        "Voice Assistant Support"
+      ],
+      "colors": ["Black", "Silver", "Navy Blue"]
     },
     {
-      "id": 2,
-      "name": "Smartwatch Black",
-      "price": 450000,
-      "category": "Gadget",
-      "image": "https://via.placeholder.com/300x200?text=Smartwatch"
+      "id": "2",
+      "title": "Smart Watch",
+      "name": "Fitness Tracker Watch",
+      "description": "Advanced smartwatch with heart rate monitoring, GPS, and water resistance.",
+      "price": 299.99,
+      "imageUrl": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",
+      "stockQuantity": 25,
+      "features": [
+        "Heart Rate Monitoring",
+        "GPS",
+        "Water Resistance",
+        "Sleep Tracking",
+        "Notifications"
+      ],
+      "colors": ["Black", "White", "Rose Gold"]
     },
     {
-      "id": 3,
-      "name": "Sepatu Sneakers",
-      "price": 380000,
-      "category": "Fashion",
-      "image": "https://via.placeholder.com/300x200?text=Sneakers"
+      "id": "3",
+      "title": "Laptop Backpack",
+      "name": "Anti-theft Travel Backpack",
+      "description": "Durable laptop backpack with USB charging port and anti-theft features.",
+      "price": 79.99,
+      "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
+      "stockQuantity": 50,
+      "features": [
+        "USB Charging Port",
+        "Anti-theft Design",
+        "Water Resistant",
+        "Multiple Compartments",
+        "Ergonomic Design"
+      ],
+      "colors": ["Black", "Gray", "Blue"]
+    },
+    {
+      "id": "4",
+      "title": "Coffee Maker",
+      "name": "Smart Coffee Maker",
+      "description": "Programmable coffee maker with smartphone control and multiple brewing options.",
+      "price": 149.99,
+      "imageUrl": "https://images.unsplash.com/photo-1520970014086-2e6b0ce4b31e?w=500",
+      "stockQuantity": 30,
+      "features": [
+        "Smartphone Control",
+        "Programmable",
+        "Multiple Brewing Options",
+        "Auto Shut-off",
+        "Reusable Filter"
+      ],
+      "colors": ["Black", "White", "Red"]
+    },
+    {
+      "id": "5",
+      "title": "Wireless Speaker",
+      "name": "Portable Bluetooth Speaker",
+      "description": "Waterproof portable speaker with 360-degree sound and 20-hour playtime.",
+      "price": 129.99,
+      "imageUrl": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500",
+      "stockQuantity": 40,
+      "features": [
+        "Waterproof",
+        "360-degree Sound",
+        "20-hour Playtime",
+        "Bluetooth 5.0",
+        "Built-in Microphone"
+      ],
+      "colors": ["Black", "Blue", "Red"]
     }
   ]
-  
-  
+}
