@@ -26,6 +26,7 @@ marketplace-app
 │   ├── types
 │   ├── App.tsx
 │   └── index.tsx
+├── .env.example
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -42,13 +43,14 @@ marketplace-app
    ```
    cd marketplace-app
    ```
+3. rename `.env.example` to `.env`
 
-3. Install dependencies:
+   Update the `.env` file with your environment variables, such as API keys or database URLs.
+4. Install dependencies:
    ```
    npm install
    ```
-
-4. Start the development server:
+5. Start the development server:
    ```
    npm start
    ```
