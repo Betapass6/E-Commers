@@ -17,6 +17,10 @@ interface AuthContextType {
 
 const SESSION_TIMEOUT = 1000 * 60 * 60; // 1 hour
 const AUTH_KEY = 'auth_data';
+const LOCKOUT_ATTEMPTS = 3;
+const LOCKOUT_DURATION = 1000 * 60 * 5; // 5 minutes
+
+const getLockoutKey = (username: string) => `lockout_${username}`;
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -48,9 +52,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [user]);
 
   const login = (username: string, password: string): boolean => {
+    // Check lockout status
+    const lockoutData = localStorage.getItem(getLockoutKey(username));
+    if (lockoutData) {
+      const { attempts, lockoutUntil } = JSON.parse(lockoutData);
+      if (lockoutUntil && Date.now() < lockoutUntil) {
+        // Still locked out
+        return false;
+      }
+    }
+
     // Basic password hashing (for demo purposes only)
     const hashedPassword = btoa(password);
-    
     const foundUser = usersData.users.find(
       (u) => u.username === username && btoa(u.password) === hashedPassword
     );
@@ -58,16 +71,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (foundUser) {
       const { password: _, ...userWithoutPassword } = foundUser;
       setUser(userWithoutPassword);
-      
       // Save auth data with timestamp
       localStorage.setItem(AUTH_KEY, JSON.stringify({
         user: userWithoutPassword,
         timestamp: Date.now()
       }));
-      
+      // Reset lockout on success
+      localStorage.removeItem(getLockoutKey(username));
       return true;
+    } else {
+      // Handle failed attempt
+      let attempts = 1;
+      let lockoutUntil = null;
+      if (lockoutData) {
+        const parsed = JSON.parse(lockoutData);
+        attempts = (parsed.attempts || 0) + 1;
+      }
+      if (attempts >= LOCKOUT_ATTEMPTS) {
+        lockoutUntil = Date.now() + LOCKOUT_DURATION;
+      }
+      localStorage.setItem(getLockoutKey(username), JSON.stringify({ attempts, lockoutUntil }));
+      return false;
     }
-    return false;
   };
 
   const logout = () => {

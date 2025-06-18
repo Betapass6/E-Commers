@@ -8,9 +8,12 @@ export interface Product {
     price: number;
     imageUrl: string;
     stockQuantity: number;
-    features?: string[];
+    features: string[];
     colors?: string[];
-    quantity?: number;
+    category?: string;
+    rating?: number;
+    reviews?: number;
+    badge?: string;
 }
 
 export interface CartItem {
@@ -18,11 +21,24 @@ export interface CartItem {
     quantity: number;
 }
 
+export interface Address {
+    id: string;
+    label: string;
+    recipient: string;
+    phone: string;
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+}
+
 export interface User {
     id: string;
     name: string;
     email: string;
-    address: string;
+    addresses?: Address[];
+    selectedAddressId?: string;
 }
 
 export interface PaymentDetails {

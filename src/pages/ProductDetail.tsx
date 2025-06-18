@@ -26,6 +26,7 @@ import { useCart } from '../hooks/useCart';
 import { Product } from '../types';
 import { getProduct } from '../services/api';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import { FaStar } from 'react-icons/fa';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -89,20 +90,55 @@ const ProductDetail: React.FC = () => {
           <Image
             src={product.imageUrl}
             alt={product.title}
-            borderRadius="lg"
+            borderRadius="2xl"
             objectFit="cover"
             w="100%"
-            h="auto"
-            shadow="lg"
+            h="400px"
+            shadow="2xl"
+            mb={2}
           />
+          {product.badge && (
+            <Badge
+              position="absolute"
+              top={4}
+              left={4}
+              colorScheme={product.badge === 'Sale' ? 'red' : 'teal'}
+              fontSize="1em"
+              px={4}
+              py={2}
+              borderRadius="md"
+              zIndex={1}
+              shadow="md"
+            >
+              {product.badge}
+            </Badge>
+          )}
         </Box>
 
-        <VStack align="stretch" spacing={6}>
+        <VStack align="stretch" spacing={6} position="relative">
           <Box>
             <Heading size="xl">{product.title}</Heading>
             <Text color="gray.600" fontSize="lg" mt={2}>
               {product.name}
             </Text>
+            {/* Ratings and reviews */}
+            {product.rating && (
+              <HStack mt={2} spacing={1} align="center">
+                {[...Array(5)].map((_, i) =>
+                  React.createElement(FaStar as any, {
+                    key: i,
+                    color: i < Math.round(product.rating ?? 0) ? '#ECC94B' : '#CBD5E0',
+                    size: 20
+                  })
+                )}
+                <Text fontSize="sm" color="gray.500" ml={1}>
+                  {product.rating.toFixed(1)}
+                </Text>
+                <Text fontSize="sm" color="gray.400">
+                  ({product.reviews || 0} reviews)
+                </Text>
+              </HStack>
+            )}
           </Box>
 
           <HStack>
@@ -165,6 +201,9 @@ const ProductDetail: React.FC = () => {
                 onClick={handleAddToCart}
                 isDisabled={product.stockQuantity === 0}
                 flexGrow={1}
+                shadow="md"
+                _hover={{ bg: 'teal.700', transform: 'scale(1.03)' }}
+                transition="all 0.2s"
               >
                 Add to Cart
               </Button>
@@ -178,7 +217,7 @@ const ProductDetail: React.FC = () => {
               </Text>
               <HStack>
                 {product.colors.map((color) => (
-                  <Badge key={color} px={3} py={1}>
+                  <Badge key={color} px={3} py={1} borderRadius="md" bg="gray.100" color="gray.700">
                     {color}
                   </Badge>
                 ))}

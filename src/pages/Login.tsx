@@ -8,10 +8,14 @@ import {
   VStack,
   Heading,
   useToast,
-  Text
+  Text,
+  InputGroup,
+  InputRightElement,
+  IconButton
 } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const MAX_ATTEMPTS = 3;
 const LOCKOUT_TIME = 1000 * 60 * 15; // 15 minutes
@@ -19,6 +23,7 @@ const LOCKOUT_TIME = 1000 * 60 * 15; // 15 minutes
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [attempts, setAttempts] = useState(() => {
     const saved = localStorage.getItem('login_attempts');
     return saved ? JSON.parse(saved) : { count: 0, timestamp: 0 };
@@ -98,12 +103,24 @@ const Login: React.FC = () => {
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Password</FormLabel>
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            isDisabled={isLocked}
-          />
+          <InputGroup>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              isDisabled={isLocked}
+            />
+            <InputRightElement>
+              <IconButton
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                icon={showPassword ? (React.createElement(FaEyeSlash as any)) : (React.createElement(FaEye as any))}
+                size="sm"
+                variant="ghost"
+                onClick={() => setShowPassword((show) => !show)}
+                tabIndex={-1}
+              />
+            </InputRightElement>
+          </InputGroup>
         </FormControl>
         <Button 
           type="submit" 

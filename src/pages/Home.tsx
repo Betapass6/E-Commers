@@ -34,7 +34,7 @@ const features: Feature[] = [
 
 const Home: React.FC = () => {
     const { products, loading } = useProducts();
-    const featuredProducts = products.slice(0, 3);
+    const featuredProducts = products.slice(0, 6);
     const bgGradient = useColorModeValue(
       'linear(to-r, teal.500, blue.500)',
       'linear(to-r, teal.600, blue.600)'
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
             <Box 
               position="relative" 
               height={{ base: "400px", md: "600px" }}
-              mb={10}
+              mb={16}
             >
                 <Box
                   position="absolute"
@@ -64,13 +64,12 @@ const Home: React.FC = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    bg: 'blackAlpha.600',
+                    bg: 'blackAlpha.700',
                   }}
                 />
-                
                 <Container maxW="container.xl" position="relative" height="100%">
                     <Stack
-                      spacing={6}
+                      spacing={8}
                       w={{ base: "100%", md: "65%" }}
                       position="absolute"
                       top="50%"
@@ -81,13 +80,13 @@ const Home: React.FC = () => {
                           as="h1" 
                           size="2xl" 
                           lineHeight="shorter"
-                          textShadow="2px 2px 4px rgba(0,0,0,0.3)"
+                          textShadow="2px 2px 8px rgba(0,0,0,0.5)"
                         >
                             Welcome to Our Online Marketplace
                         </Heading>
                         <Text 
-                          fontSize="xl" 
-                          textShadow="1px 1px 2px rgba(0,0,0,0.3)"
+                          fontSize="2xl" 
+                          textShadow="1px 1px 4px rgba(0,0,0,0.4)"
                         >
                             Discover amazing products at unbeatable prices!
                         </Text>
@@ -99,7 +98,9 @@ const Home: React.FC = () => {
                                   color="white"
                                   _hover={{
                                     bgGradient: 'linear(to-r, teal.600, blue.600)',
+                                    transform: 'scale(1.05)'
                                   }}
+                                  shadow="lg"
                                 >
                                     Shop Now
                                 </Button>
@@ -110,19 +111,21 @@ const Home: React.FC = () => {
             </Box>
 
             {/* Features Section */}
-            <Container maxW="container.xl" py={10}>
+            <Container maxW="container.xl" py={12}>
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                     {features.map((feature, idx) => (
                         <VStack 
                           key={idx} 
                           align="center" 
-                          p={6} 
+                          p={8} 
                           bg={useColorModeValue('white', 'gray.700')}
-                          rounded="lg"
-                          shadow="md"
+                          rounded="2xl"
+                          shadow="lg"
+                          transition="all 0.2s"
+                          _hover={{ shadow: '2xl', transform: 'scale(1.04)' }}
                         >
-                            <Icon as={feature.icon} w={10} h={10} color="teal.500" />
-                            <Text fontWeight="bold" fontSize="lg">{feature.title}</Text>
+                            <Icon as={feature.icon} w={12} h={12} color="teal.400" mb={2} />
+                            <Text fontWeight="bold" fontSize="xl">{feature.title}</Text>
                             <Text color="gray.500" align="center">{feature.desc}</Text>
                         </VStack>
                     ))}
@@ -131,23 +134,23 @@ const Home: React.FC = () => {
 
             {/* Featured Products Section */}
             <Box 
-              py={16} 
+              py={20} 
               bg={useColorModeValue('gray.50', 'gray.900')}
             >
                 <Container maxW="container.xl">
-                    <VStack spacing={8}>
+                    <VStack spacing={10}>
                         <Heading as="h2" size="xl" textAlign="center">
                             Featured Products
                         </Heading>
-                        <Text fontSize="lg" color="gray.600" textAlign="center">
+                        <Text fontSize="xl" color="gray.600" textAlign="center">
                             Check out our most popular items
                         </Text>
                         {loading ? (
                             <LoadingSpinner />
                         ) : (
                             <SimpleGrid 
-                              columns={{ base: 1, md: 2, lg: 3 }} 
-                              spacing={8} 
+                              columns={{ base: 1, sm: 2, md: 3 }} 
+                              spacing={10} 
                               w="full"
                             >
                                 {featuredProducts.map(product => (
@@ -160,24 +163,27 @@ const Home: React.FC = () => {
             </Box>
 
             {/* Newsletter Section */}
-            <Box py={16}>
+            <Box py={20}>
                 <Container maxW="container.xl">
                     <Stack 
                       direction={{ base: 'column', md: 'row' }} 
-                      spacing={8} 
+                      spacing={12} 
                       align="center"
                     >
-                        <Box flex={1}>
+                        <Box flex={1} minW={0}>
                             <Image
                                 src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
                                 alt="Newsletter"
-                                rounded="lg"
+                                rounded="2xl"
                                 shadow="2xl"
+                                w="100%"
+                                h={{ base: '200px', md: '260px' }}
+                                objectFit="cover"
                             />
                         </Box>
-                        <VStack flex={1} align="start" spacing={4}>
+                        <VStack flex={1} align="start" spacing={6} w="full">
                             <Heading size="lg">Stay Updated</Heading>
-                            <Text color="gray.600">
+                            <Text color="gray.600" fontSize="lg">
                                 Subscribe to our newsletter to receive updates, news, and exclusive offers!
                             </Text>
                             <HStack w="full">
@@ -185,13 +191,14 @@ const Home: React.FC = () => {
                                     type="email"
                                     placeholder="Enter your email"
                                     style={{
-                                        padding: '8px 12px',
-                                        borderRadius: '4px',
+                                        padding: '14px 18px',
+                                        borderRadius: '8px',
                                         border: '1px solid #E2E8F0',
-                                        width: '100%'
+                                        width: '100%',
+                                        fontSize: '1.1rem'
                                     }}
                                 />
-                                <Button colorScheme="teal">Subscribe</Button>
+                                <Button colorScheme="teal" size="lg" px={8} shadow="md">Subscribe</Button>
                             </HStack>
                         </VStack>
                     </Stack>
