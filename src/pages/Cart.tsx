@@ -128,24 +128,24 @@ const Cart: React.FC = () => {
         <Box display={{ base: 'block', md: 'flex' }} gap={8} alignItems="flex-start">
           {/* Cart Items */}
           <Box flex={2}>
-            {cartItems.length === 0 ? (
+        {cartItems.length === 0 ? (
               <Box bg="white" p={8} borderRadius="xl" boxShadow="md" textAlign="center">
                 <Text fontSize="xl" color="gray.500">Your cart is empty.</Text>
                 <Button mt={6} colorScheme="teal" onClick={() => navigate('/products')}>Continue Shopping</Button>
               </Box>
-            ) : (
-              <>
-                {cartItems.map(item => (
-                  <CartItem 
-                    key={item.id} 
-                    item={item} 
-                    onRemove={removeFromCart}
-                    onUpdateQuantity={updateQuantity}
-                  />
-                ))}
+        ) : (
+          <>
+            {cartItems.map(item => (
+              <CartItem 
+                key={item.id} 
+                item={item} 
+                onRemove={removeFromCart}
+                onUpdateQuantity={updateQuantity}
+              />
+            ))}
               </>
             )}
-          </Box>
+            </Box>
           {/* Summary Card */}
           <Box flex={1} minW="300px" ml={{ md: 8 }} mt={{ base: 8, md: 0 }}>
             <Box bg="white" p={6} borderRadius="xl" boxShadow="lg" position="sticky" top={24}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Image, Text, Button, VStack, HStack, Badge, useColorModeValue } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types';
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../contexts/CartContext';
 import { FaStar } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 

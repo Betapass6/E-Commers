@@ -6,8 +6,10 @@ import { useAuth } from '../contexts/AuthContext';
 import { Address } from '../types';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Input, FormControl, FormLabel, SimpleGrid, Radio, RadioGroup, Stack, Divider, Text, HStack, VStack, Icon } from '@chakra-ui/react';
 import { FaMapMarkerAlt, FaTruck, FaCreditCard, FaListAlt, FaCheckCircle, FaEdit, FaShareAlt } from 'react-icons/fa';
-import useCart from '../hooks/useCart';
+import { useCart } from '../contexts/CartContext';
 import { Collapse } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 
 const Checkout: React.FC = () => {
     const { user } = useAuth();
@@ -31,6 +33,9 @@ const Checkout: React.FC = () => {
     const [newAddress, setNewAddress] = React.useState<Partial<Address>>({});
     const [shipping, setShipping] = React.useState('standard');
     const [showAddForm, setShowAddForm] = React.useState(false);
+    const navigate = useNavigate();
+    const toast = useToast();
+    const { clearCart } = useCart();
 
     const handleOpenAddressModal = () => setAddressModalOpen(true);
     const handleCloseAddressModal = () => setAddressModalOpen(false);
@@ -56,7 +61,29 @@ const Checkout: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        // Handle the submission of the forms
+        if (!selectedAddressId) {
+            toast({
+                title: 'No address selected',
+                description: 'Please select a shipping address before completing your purchase.',
+                status: 'error',
+                duration: 4000,
+                isClosable: true,
+            });
+            return;
+        }
+        if (cartItems.length === 0) {
+            toast({
+                title: 'Cart is empty',
+                description: 'Please add items to your cart before checking out.',
+                status: 'error',
+                duration: 4000,
+                isClosable: true,
+            });
+            return;
+        }
+        // Optionally: Save order to localStorage or backend here
+        clearCart();
+        navigate('/payment-success');
     };
 
     const shippingCost = shipping === 'express' ? 9.99 : 0;
@@ -187,11 +214,11 @@ const Checkout: React.FC = () => {
                                 {React.createElement(FaCreditCard as any)}
                                 <Heading as="h3" size="md">Payment</Heading>
                             </HStack>
-                            <PaymentForm />
+            <PaymentForm />
                         </Box>
                         <Button colorScheme="teal" onClick={handleSubmit} mt={4} w="full" size="lg">
-                            Complete Purchase
-                        </Button>
+                Complete Purchase
+            </Button>
                     </Box>
                     {/* Right: Order Summary */}
                     <Box flex={1} minW="320px" ml={{ md: 8 }} mt={{ base: 8, md: 0 }}>

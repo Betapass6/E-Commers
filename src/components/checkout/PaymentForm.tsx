@@ -22,14 +22,14 @@ const paymentMethods = [
 
 const PaymentForm: React.FC = () => {
   const [selectedMethod, setSelectedMethod] = useState('card');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
+    const [expiryDate, setExpiryDate] = useState('');
+    const [cvv, setCvv] = useState('');
   const [bankAccount, setBankAccount] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle payment processing logic here
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Handle payment processing logic here
     if (selectedMethod === 'card') {
       console.log('Card Payment:', { cardNumber, expiryDate, cvv });
     } else if (selectedMethod === 'bank') {
@@ -37,9 +37,9 @@ const PaymentForm: React.FC = () => {
     } else if (selectedMethod === 'gopay') {
       console.log('GoPay Payment');
     }
-  };
+    };
 
-  return (
+    return (
     <Box as="form" onSubmit={handleSubmit}>
       <VStack align="stretch" spacing={4}>
         <Text fontWeight="bold" mb={1}>Select Payment Method</Text>
@@ -73,33 +73,33 @@ const PaymentForm: React.FC = () => {
         {/* Only render the fields for the selected method */}
         {selectedMethod === 'card' && (
           <Stack spacing={4} mt={2}>
-            <FormControl isRequired>
-              <FormLabel>Card Number</FormLabel>
-              <Input
-                type="text"
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
-                placeholder="Enter your card number"
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>Expiry Date</FormLabel>
-              <Input
-                type="text"
-                value={expiryDate}
-                onChange={(e) => setExpiryDate(e.target.value)}
-                placeholder="MM/YY"
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>CVV</FormLabel>
-              <Input
-                type="text"
-                value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
-                placeholder="Enter your CVV"
-              />
-            </FormControl>
+                <FormControl isRequired>
+                    <FormLabel>Card Number</FormLabel>
+                    <Input
+                        type="text"
+                        value={cardNumber}
+                        onChange={(e) => setCardNumber(e.target.value)}
+                        placeholder="Enter your card number"
+                    />
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel>Expiry Date</FormLabel>
+                    <Input
+                        type="text"
+                        value={expiryDate}
+                        onChange={(e) => setExpiryDate(e.target.value)}
+                        placeholder="MM/YY"
+                    />
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel>CVV</FormLabel>
+                    <Input
+                        type="text"
+                        value={cvv}
+                        onChange={(e) => setCvv(e.target.value)}
+                        placeholder="Enter your CVV"
+                    />
+                </FormControl>
           </Stack>
         )}
         {selectedMethod === 'bank' && (
@@ -123,12 +123,12 @@ const PaymentForm: React.FC = () => {
               {React.createElement(FaQrcode as any, { size: 48, color: '#319795' })}
               <Text mt={2} fontWeight="bold">Scan to Pay</Text>
             </Box>
-          </Stack>
+            </Stack>
         )}
         <Button type="submit" colorScheme="teal" mt={4} w="full">Submit Payment</Button>
       </VStack>
-    </Box>
-  );
+        </Box>
+    );
 };
 
 export default PaymentForm;

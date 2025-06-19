@@ -11,23 +11,23 @@ interface CartItemProps {
 
 const CartItem: React.FC<CartItemProps> = ({ item, onRemove, onUpdateQuantity }) => {
   return (
-    <Box
+    <Box 
       bg="white"
       borderRadius="xl"
       boxShadow="md"
-      p={4}
+      p={4} 
       mb={4}
       display="flex"
       alignItems="center"
       transition="box-shadow 0.2s"
       _hover={{ boxShadow: 'xl' }}
     >
-      <Image
-        src={item.imageUrl}
-        alt={item.title}
+        <Image 
+          src={item.imageUrl} 
+          alt={item.title} 
         boxSize="80px"
         borderRadius="md"
-        objectFit="cover"
+          objectFit="cover" 
         mr={4}
       />
       <VStack align="start" spacing={1} flex={1}>
